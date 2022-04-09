@@ -15,17 +15,30 @@ public class SpawnManager : MonoBehaviour
     private float startDelay = 1;
     private float spawnInterval = 3;
 
+	//PlayerGrowth playerGrowth;
+	//public GameObject Player;
+
+	//public int spawnNumStart = dinoPrefabs[5];
+	//public int spawnAddition = 1;
+
     // Start is called before the first frame update
     void Start()
     {
+		//int spawnNum = spawnNumStart;
+		//playerGrowth = Player.GetComponent<PlayerController>();
         InvokeRepeating("SpawnRandomDino", startDelay, spawnInterval);
+		
         
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+		
+		//if (playerGrowth.playerSize > 100)
+		//{
+			//spawnNum = spawnNum + spawnAddition;
+		//}
     }
     
     
@@ -35,7 +48,7 @@ public class SpawnManager : MonoBehaviour
 		if (dinoSpawnX == true)
 		{
         	Vector3 spawnPos = new Vector3(spawnPosX, 0, Random.Range(-spawnRangeZ, spawnRangeZ));
-       	 	int dinoIndex = Random.Range(0, dinoPrefabs.Length);
+       	 	int dinoIndex = Random.Range(0, dinoPrefabs.Length); //spawnNum);
         	var dinoCloneOne = Instantiate(dinoPrefabs[dinoIndex], spawnPos, dinoPrefabs[dinoIndex].transform.rotation);
 			dinoCloneOne.gameObject.tag = "RightSpawnPoint";
 			dinoSpawnX = false;
@@ -44,7 +57,7 @@ public class SpawnManager : MonoBehaviour
 		else if (dinoSpawnX == false)
 		{
 		 	Vector3 spawnPos = new Vector3(-spawnPosX, 0, Random.Range(-spawnRangeZ, spawnRangeZ));
-        	int dinoIndex = Random.Range(0, dinoPrefabs.Length);
+        	int dinoIndex = Random.Range(0, dinoPrefabs.Length); //spawnNum);
         	var dinoCloneTwo = Instantiate(dinoPrefabs[dinoIndex], spawnPos, dinoPrefabs[dinoIndex].transform.rotation);
 			dinoCloneTwo.gameObject.tag = "LeftSpawnPoint";
 			dinoSpawnX = true;
