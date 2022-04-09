@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class MoveHorizontally : MonoBehaviour
 {
-    public float speed = 2;
+    public float speed = 1.0f;
 
-    private float xBound = 15;
+    private float xBound = 20;
+	
+	public int dinoSize;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +18,16 @@ public class MoveHorizontally : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.left * Time.deltaTime * speed);
+		if(gameObject.CompareTag("RightSpawnPoint"))
+		{
+			transform.Translate(Vector3.left * Time.deltaTime * speed);
+		}
+		else if (gameObject.CompareTag("LeftSpawnPoint"))
+		{
+			transform.Translate(Vector3.right * Time.deltaTime * speed);
+		}
         
-        //destroys game object if out of bounds
+        //destroys dino object if out of bounds
         if (transform.position.x < -xBound)
         {
             Destroy(gameObject);
@@ -27,6 +36,5 @@ public class MoveHorizontally : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-    
+    }   
 }

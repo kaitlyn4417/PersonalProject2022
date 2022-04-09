@@ -187,8 +187,7 @@ MonoBehaviour:
   - {fileID: 6106702323785726358, guid: 4736eb4e3c2e91d4696aa14b95b39769, type: 3}
   - {fileID: 3724366727481045952, guid: 59cacfe8a0b11614ea1d3758fb888701, type: 3}
   - {fileID: 7399183094268682194, guid: 9f2838d0b8e5a0f45a2cc263d71aed85, type: 3}
-  spawnPosX: 10
-  spawnRangeZ: 19
+  spawnRangeZ: 8
 --- !u!1 &583728460
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,7 +371,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 10.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -475,9 +474,10 @@ GameObject:
   - component: {fileID: 1056163656}
   - component: {fileID: 1056163660}
   - component: {fileID: 1056163661}
+  - component: {fileID: 1056163662}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -490,7 +490,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056163655}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -585,8 +585,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0afe6770debdc34d97e3eb7a4540020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: 150
+  points: 0
   scale: 2
+--- !u!54 &1056163662
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056163655}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &361344126879163692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -822,6 +838,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 963555976, guid: 59cacfe8a0b11614ea1d3758fb888701, type: 3}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3724366727481045952, guid: 59cacfe8a0b11614ea1d3758fb888701, type: 3}
       propertyPath: m_Name
       value: Dino19
