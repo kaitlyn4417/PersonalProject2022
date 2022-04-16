@@ -6,13 +6,15 @@ public class PlayerGrowth : MonoBehaviour
 {
     public float points;
 	public int playerSize = 0;
-    private float scale = 0.002f;
-	private float startingSize = 1;
+    private float scale = 0.001f;
+	private float startingSize = 0.3f;
+	public PlayerController playerController;
+	
 
     // Start is called before the first frame update
     void Start()
     {
-
+		playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -21,16 +23,25 @@ public class PlayerGrowth : MonoBehaviour
 	//player continuously grows in size as it "eats" other dinos
 		float scaleSize = startingSize + (playerSize * scale);
 
-		transform.localScale = new Vector3(scaleSize, scaleSize, scaleSize);
+		//flips player character in the direction it is moving
+		if(playerController.facingRight == true)
+		{
+			transform.localScale = new Vector3(scaleSize, scaleSize, scaleSize);	
+		}
+		else if(playerController.facingRight == false)
+		{
+			transform.localScale = new Vector3(-scaleSize, scaleSize, scaleSize);
+		}	
+				 
 	}
 
-	//player collides with other dinos
-	 void OnTriggerEnter(Collider other)
+
+void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.tag == "RightSpawnPoint" || other.gameObject.tag == "LeftSpawnPoint")
 		{
 			//dinos give certain points based on their gameobject
-			switch(other.gameObject.name)
+		switch(other.gameObject.name)
 			{
 				case "Dino1(Clone)":
 					playerSize = playerSize + 1;
@@ -117,7 +128,10 @@ public class PlayerGrowth : MonoBehaviour
 				}
 			
 			Destroy(other.gameObject);
-		}
+			}
 		Debug.Log(playerSize);
-	 }
+	}	
+
 }
+
+	 

@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     private float xRange = 16;
     private float zRange = 8.5f;
 
+    public bool facingRight = true;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +24,19 @@ public class PlayerController : MonoBehaviour
         //player movement
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
-        transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
-        transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * speed);
+        transform.Translate(Vector3.left * horizontalInput * Time.deltaTime * speed);
+        transform.Translate(Vector3.back * verticalInput * Time.deltaTime * speed);
+
+        //checks and updates the direction player is facing according to input
+        if (horizontalInput > 0 && !facingRight)
+        {
+            facingRight = true;
+        } 
+        
+        if (horizontalInput < 0 && facingRight)
+        {
+            facingRight = false;
+        }
         
         //keeps player in bounds
         if (transform.position.x > xRange)

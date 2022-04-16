@@ -21,10 +21,14 @@ public class MoveHorizontally : MonoBehaviour
 		if(gameObject.CompareTag("RightSpawnPoint"))
 		{
 			transform.Translate(Vector3.left * Time.deltaTime * speed);
+			transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+			//transform.rotation = new Vector3(transform.rotation.x, 180, transform.rotation.z);
 		}
 		else if (gameObject.CompareTag("LeftSpawnPoint"))
 		{
 			transform.Translate(Vector3.right * Time.deltaTime * speed);
+			transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
+			//transform.rotation = new Vector3(transform.rotation.x, 180, transform.rotation.z);
 		}
         
         //destroys dino object if out of bounds
