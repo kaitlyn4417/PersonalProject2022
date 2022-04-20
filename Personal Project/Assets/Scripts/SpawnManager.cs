@@ -16,17 +16,14 @@ public class SpawnManager : MonoBehaviour
     private float spawnInterval = 3;
 
 
-	//PlayerGrowth playerGrowth;
-	//public GameObject Player;
+	PlayerGrowth playerGrowth;
 
-	//public int spawnNumStart = dinoPrefabs[5];
-	//public int spawnAddition = 1;
+	public int spawnNum = 5;
+	public int points = 25;
 
-    // Start is called before the first frame update
     void Start()
     {
-		//int spawnNum = spawnNumStart;
-		//playerGrowth = Player.GetComponent<PlayerController>();
+		playerGrowth = GameObject.Find("Player").GetComponent<PlayerGrowth>();
         InvokeRepeating("SpawnRandomDino", startDelay, spawnInterval);
         
     }
@@ -34,30 +31,31 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		
-		//if (playerGrowth.playerSize > 100)
-		//{
-			//spawnNum = spawnNum + spawnAddition;
-		//}
+		//spawns new dinos as player grows
+		if (playerGrowth.playerSize > points)
+		{
+			spawnNum++;
+			points += 100;
+		}
     }
     
     
     void SpawnRandomDino()
     {
-		//spawns dino on right side
+		//spawns dino on left side
 		if (dinoSpawnX == true)
 		{
         	Vector3 spawnPos = new Vector3(spawnPosX, 0.2f, Random.Range(-spawnRangeZ, spawnRangeZ));
-       	 	int dinoIndex = Random.Range(0, dinoPrefabs.Length); //spawnNum);
+       	 	int dinoIndex = Random.Range(0, 2);
         	var dinoCloneOne = Instantiate(dinoPrefabs[dinoIndex], spawnPos, dinoPrefabs[dinoIndex].transform.rotation);
 			dinoCloneOne.gameObject.tag = "RightSpawnPoint";
 			dinoSpawnX = false;
 		}
-		//spawns dino on left side
+		//spawns dino on right side
 		else if (dinoSpawnX == false)
 		{
 		 	Vector3 spawnPos = new Vector3(-spawnPosX, 0.2f, Random.Range(-spawnRangeZ, spawnRangeZ));
-        	int dinoIndex = Random.Range(0, dinoPrefabs.Length); //spawnNum);
+        	int dinoIndex = Random.Range(0, 2);
         	var dinoCloneTwo = Instantiate(dinoPrefabs[dinoIndex], spawnPos, dinoPrefabs[dinoIndex].transform.rotation);
 			dinoCloneTwo.gameObject.tag = "LeftSpawnPoint";
 			dinoSpawnX = true;
