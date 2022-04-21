@@ -44,15 +44,15 @@ void OnTriggerEnter(Collider other)
 		switch(other.gameObject.name)
 			{
 				case "Dino1(Clone)":
-					playerSize = playerSize + 1;
+					playerSize = playerSize + 3;
 					break;
 
 				case "Dino2(Clone)":
-					playerSize = playerSize + 2;
+					playerSize = playerSize + 4;
 					break;
 
 				case "Dino3(Clone)":
-					playerSize = playerSize + 2;
+					playerSize = playerSize + 4;
 					break;
 		
 				case "Dino4(Clone)":

@@ -2,9 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public GameObject[] dinoPrefabs;
+	//public List<GameObject> dinoPrefabs;
+	//public SpawnManager spawnManager;
+
+	//private float startDelay = 1;
+    //private float spawnInterval = 3;
+	private float spawnRate = 3.0f;
+
+	public GameObject[] dinoPrefabs;
 
     private float spawnPosX = 18;
     
@@ -12,41 +19,45 @@ public class SpawnManager : MonoBehaviour
 
 	private bool dinoSpawnX = true;
 
-    //private float startDelay = 1;
-    //private float spawnInterval = 3;
-
-
+	
 	PlayerGrowth playerGrowth;
 
-	public int spawnNum = 5;
+	public int spawnNum = 8;
 	public int points = 25;
 
+    // Start is called before the first frame update
     void Start()
     {
-		playerGrowth = GameObject.Find("Player").GetComponent<PlayerGrowth>();
-        //InvokeRepeating("SpawnRandomDino", startDelay, spawnInterval);
-        
+        playerGrowth = GameObject.Find("Player").GetComponent<PlayerGrowth>();
+		StartCoroutine(dinoSpawn());
     }
 
     // Update is called once per frame
     void Update()
     {
-		//spawns new dinos as player grows
-		if (playerGrowth.playerSize > points)
+        if (playerGrowth.playerSize > points)
 		{
 			spawnNum++;
 			points += 100;
 		}
     }
-    
-    
-    public void SpawnRandomDino()
+
+	IEnumerator dinoSpawn()
+	{
+		while(true)
+		{	
+			yield return new WaitForSeconds(spawnRate);
+			SpawnRandomDino();
+		}
+	}
+
+	public void SpawnRandomDino()
     {
 		//spawns dino on left side
 		if (dinoSpawnX == true)
 		{
         	Vector3 spawnPos = new Vector3(spawnPosX, 0.2f, Random.Range(-spawnRangeZ, spawnRangeZ));
-       	 	int dinoIndex = Random.Range(0, 2);
+       	 	int dinoIndex = Random.Range(0, spawnNum);
         	var dinoCloneOne = Instantiate(dinoPrefabs[dinoIndex], spawnPos, dinoPrefabs[dinoIndex].transform.rotation);
 			dinoCloneOne.gameObject.tag = "RightSpawnPoint";
 			dinoSpawnX = false;
@@ -55,7 +66,7 @@ public class SpawnManager : MonoBehaviour
 		else if (dinoSpawnX == false)
 		{
 		 	Vector3 spawnPos = new Vector3(-spawnPosX, 0.2f, Random.Range(-spawnRangeZ, spawnRangeZ));
-        	int dinoIndex = Random.Range(0, 2);
+        	int dinoIndex = Random.Range(0, spawnNum);
         	var dinoCloneTwo = Instantiate(dinoPrefabs[dinoIndex], spawnPos, dinoPrefabs[dinoIndex].transform.rotation);
 			dinoCloneTwo.gameObject.tag = "LeftSpawnPoint";
 			dinoSpawnX = true;
