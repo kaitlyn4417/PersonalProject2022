@@ -110,3 +110,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   dinoScale: 0.35
+  targetIndicator: {fileID: 5781992429123084385, guid: 90f42429f0cd0f34eb4dec698f71b761, type: 3}

@@ -108,5 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac13ac2122fabf94684214ebb9ac1818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  dinoSize: 30
+  speed: 1
+  dinoScale: 0
+  targetIndicator: {fileID: 0}

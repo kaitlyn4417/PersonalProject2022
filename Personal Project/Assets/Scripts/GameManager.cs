@@ -1,14 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-	//public List<GameObject> dinoPrefabs;
-	//public SpawnManager spawnManager;
+	public TextMeshProUGUI titleText;
+	public Button startButton;
+	public TextMeshProUGUI scoreText;
+	public TextMeshProUGUI gameOverText;
+	public GameObject background;
+	public Button restartButton;
+	private int score;
 
-	//private float startDelay = 1;
-    //private float spawnInterval = 3;
 	private float spawnRate = 3.0f;
 
 	public GameObject[] dinoPrefabs;
@@ -19,17 +25,26 @@ public class GameManager : MonoBehaviour
 
 	private bool dinoSpawnX = true;
 
-	
+	public GameObject targetIndicator;
 	PlayerGrowth playerGrowth;
 
 	public int spawnNum = 8;
 	public int points = 25;
 
+	public bool isGameActive;
+
     // Start is called before the first frame update
     void Start()
     {
-        playerGrowth = GameObject.Find("Player").GetComponent<PlayerGrowth>();
-		StartCoroutine(dinoSpawn());
+		//opens start screen
+		playerGrowth = GameObject.Find("Player").GetComponent<PlayerGrowth>();
+		background.gameObject.SetActive(true);
+		titleText.gameObject.SetActive(true);
+		startButton.gameObject.SetActive(true);
+		scoreText.gameObject.SetActive(false);
+		gameOverText.gameObject.SetActive(false);
+		restartButton.gameObject.SetActive(false);
+		startButton.onClick.AddListener(StartGame);
     }
 
     // Update is called once per frame
@@ -40,11 +55,25 @@ public class GameManager : MonoBehaviour
 			spawnNum++;
 			points += 100;
 		}
+		scoreText.text = "Score: " + playerGrowth.playerSize;
     }
 
+	//starts the game
+	public void StartGame()
+	{
+		isGameActive = true;
+		background.gameObject.SetActive(false);
+		scoreText.gameObject.SetActive(true);
+		titleText.gameObject.SetActive(false);
+		startButton.gameObject.SetActive(false);
+		StartCoroutine(dinoSpawn());
+		Debug.Log("game started");
+	}
+
+	//a method to spawn dinos
 	IEnumerator dinoSpawn()
 	{
-		while(true)
+		while(isGameActive)
 		{	
 			yield return new WaitForSeconds(spawnRate);
 			SpawnRandomDino();
@@ -60,6 +89,8 @@ public class GameManager : MonoBehaviour
        	 	int dinoIndex = Random.Range(0, spawnNum);
         	var dinoCloneOne = Instantiate(dinoPrefabs[dinoIndex], spawnPos, dinoPrefabs[dinoIndex].transform.rotation);
 			dinoCloneOne.gameObject.tag = "RightSpawnPoint";
+			Vector3 spawnPosRight = dinoCloneOne.transform.position + new Vector3(0,1,0);
+			Instantiate(targetIndicator, spawnPosRight, targetIndicator.transform.rotation);
 			dinoSpawnX = false;
 		}
 		//spawns dino on right side
@@ -72,4 +103,20 @@ public class GameManager : MonoBehaviour
 			dinoSpawnX = true;
 		}
     }
+
+	//game over :(
+	public void GameOver()
+	{
+		isGameActive = false;
+		scoreText.transform.position = new Vector3(41, -195, 0);
+		background.gameObject.SetActive(true);
+		gameOverText.gameObject.SetActive(true);
+		restartButton.gameObject.SetActive(true);
+	}
+	
+	//restart game method
+	public void RestartGame()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
 }

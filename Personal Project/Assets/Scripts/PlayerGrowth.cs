@@ -9,12 +9,14 @@ public class PlayerGrowth : MonoBehaviour
     private float scale = 0.001f;
 	private float startingSize = 0.3f;
 	public PlayerController playerController;
+	public GameManager gameManager;
 	
 
     // Start is called before the first frame update
     void Start()
     {
 		playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -38,7 +40,7 @@ public class PlayerGrowth : MonoBehaviour
 
 void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.tag == "RightSpawnPoint" || other.gameObject.tag == "LeftSpawnPoint")
+		if (other.gameObject.tag == "RightSpawnPoint" || other.gameObject.tag == "LeftSpawnPoint" && gameManager.isGameActive)
 		{
 			//dinos give certain points based on their gameobject
 		switch(other.gameObject.name)

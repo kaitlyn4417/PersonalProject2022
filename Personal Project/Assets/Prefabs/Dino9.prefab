@@ -109,4 +109,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  dinoSize: 12
+  dinoScale: 0
+  targetIndicator: {fileID: 0}

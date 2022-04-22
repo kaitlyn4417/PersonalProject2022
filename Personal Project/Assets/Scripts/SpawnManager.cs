@@ -15,7 +15,7 @@ public class SpawnManager : MonoBehaviour
     //private float startDelay = 1;
     //private float spawnInterval = 3;
 
-
+	public GameObject targetIndicator;
 	PlayerGrowth playerGrowth;
 
 	public int spawnNum = 5;
@@ -49,6 +49,8 @@ public class SpawnManager : MonoBehaviour
        	 	int dinoIndex = Random.Range(0, 2);
         	var dinoCloneOne = Instantiate(dinoPrefabs[dinoIndex], spawnPos, dinoPrefabs[dinoIndex].transform.rotation);
 			dinoCloneOne.gameObject.tag = "RightSpawnPoint";
+			Vector3 spawnPosRight = gameObject.transform.position + new Vector3(0,1,0);
+			Instantiate(targetIndicator, spawnPosRight, targetIndicator.transform.rotation);
 			dinoSpawnX = false;
 		}
 		//spawns dino on right side
