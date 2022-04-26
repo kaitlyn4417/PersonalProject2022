@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 383384910821367846}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2, y: 0.7, z: -14}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 383384910821367846}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &383384910821368024
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ed3861bcdfbf9b24f8986c3b7f2513eb, type: 2}
+  - {fileID: 2100000, guid: 991cd9dc28ec4c648b20932c7edae5c4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,8 +94,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.067983, y: 1, z: 1.2121887}
-  m_Center: {x: 0.0012708306, y: 0, z: 0.048713684}
+  m_Size: {x: 9.145938, y: 1, z: 4.46808}
+  m_Center: {x: -0.1377503, y: 0, z: 0.040427446}
 --- !u!114 &1834278020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac13ac2122fabf94684214ebb9ac1818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  dinoScale: 0
-  targetIndicator: {fileID: 0}
+  speed: 1.2
+  dinoScale: 0.7
+  dinoLevel: 0
+  gameManager: {fileID: 0}

@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac13ac2122fabf94684214ebb9ac1818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 1.1
   dinoScale: 0.45
-  targetIndicator: {fileID: 5781992429123084385, guid: 90f42429f0cd0f34eb4dec698f71b761, type: 3}
+  dinoLevel: 0
+  gameManager: {fileID: 0}

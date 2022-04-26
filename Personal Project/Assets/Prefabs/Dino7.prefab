@@ -94,8 +94,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 1, z: 5}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 7.0257096, y: 1, z: 3.7742834}
+  m_Center: {x: -0.24530876, y: 0, z: -0.08156989}
 --- !u!114 &1641182805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac13ac2122fabf94684214ebb9ac1818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 1.1
   dinoScale: 0.45
-  targetIndicator: {fileID: 0}
+  dinoLevel: 150
+  gameManager: {fileID: 0}

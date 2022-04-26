@@ -5,17 +5,19 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float horizontalInput;
-    private float speed = 7.5f;
+    private float speed = 6f;
     public float verticalInput;
     private float xRange = 16;
     private float zRange = 8.5f;
 
     public bool facingRight = true;
+
+    public GameManager gameManager;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -24,9 +26,13 @@ public class PlayerController : MonoBehaviour
         //player movement
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
-        transform.Translate(Vector3.left * horizontalInput * Time.deltaTime * speed);
-        transform.Translate(Vector3.back * verticalInput * Time.deltaTime * speed);
 
+        if (gameManager.isGameActive)
+        {
+            transform.Translate(Vector3.left * horizontalInput * Time.deltaTime * speed);
+            transform.Translate(Vector3.back * verticalInput * Time.deltaTime * speed);
+        }
+        
         //checks and updates the direction player is facing according to input
         if (horizontalInput > 0 && !facingRight)
         {

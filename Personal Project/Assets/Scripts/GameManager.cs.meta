@@ -3,7 +3,14 @@ guid: 4e034a9d9b5b8f84b895e4438d8f9ac4
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - titleText: {instanceID: 0}
+  - startButton: {instanceID: 0}
+  - scoreText: {instanceID: 0}
+  - gameOverText: {instanceID: 0}
+  - background: {instanceID: 0}
+  - restartButton: {instanceID: 0}
+  - targetIndicator: {fileID: 5781992429123084385, guid: 90f42429f0cd0f34eb4dec698f71b761, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

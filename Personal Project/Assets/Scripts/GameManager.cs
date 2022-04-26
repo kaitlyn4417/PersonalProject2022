@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 	public GameObject background;
 	public Button restartButton;
 	private int score;
+	public TextMeshProUGUI descriptionText;
 
 	private float spawnRate = 3.0f;
 
@@ -25,11 +26,14 @@ public class GameManager : MonoBehaviour
 
 	private bool dinoSpawnX = true;
 
-	public GameObject targetIndicator;
+	public float speed = 1.0f;
+	
+	public bool rightTarget = false;
+
 	PlayerGrowth playerGrowth;
 
 	public int spawnNum = 8;
-	public int points = 25;
+	private int points = 0;
 
 	public bool isGameActive;
 
@@ -41,6 +45,7 @@ public class GameManager : MonoBehaviour
 		background.gameObject.SetActive(true);
 		titleText.gameObject.SetActive(true);
 		startButton.gameObject.SetActive(true);
+		descriptionText.gameObject.SetActive(true);
 		scoreText.gameObject.SetActive(false);
 		gameOverText.gameObject.SetActive(false);
 		restartButton.gameObject.SetActive(false);
@@ -53,9 +58,10 @@ public class GameManager : MonoBehaviour
         if (playerGrowth.playerSize > points)
 		{
 			spawnNum++;
-			points += 100;
+			points += 50;
 		}
 		scoreText.text = "Score: " + playerGrowth.playerSize;
+
     }
 
 	//starts the game
@@ -66,6 +72,7 @@ public class GameManager : MonoBehaviour
 		scoreText.gameObject.SetActive(true);
 		titleText.gameObject.SetActive(false);
 		startButton.gameObject.SetActive(false);
+		descriptionText.gameObject.SetActive(false);
 		StartCoroutine(dinoSpawn());
 		Debug.Log("game started");
 	}
@@ -90,7 +97,6 @@ public class GameManager : MonoBehaviour
         	var dinoCloneOne = Instantiate(dinoPrefabs[dinoIndex], spawnPos, dinoPrefabs[dinoIndex].transform.rotation);
 			dinoCloneOne.gameObject.tag = "RightSpawnPoint";
 			Vector3 spawnPosRight = dinoCloneOne.transform.position + new Vector3(0,1,0);
-			Instantiate(targetIndicator, spawnPosRight, targetIndicator.transform.rotation);
 			dinoSpawnX = false;
 		}
 		//spawns dino on right side
@@ -104,11 +110,12 @@ public class GameManager : MonoBehaviour
 		}
     }
 
+	
 	//game over :(
 	public void GameOver()
 	{
 		isGameActive = false;
-		scoreText.transform.position = new Vector3(41, -195, 0);
+		scoreText.transform.position = new Vector3(510, 200, 0);
 		background.gameObject.SetActive(true);
 		gameOverText.gameObject.SetActive(true);
 		restartButton.gameObject.SetActive(true);
